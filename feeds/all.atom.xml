@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Ryan Utopia</title><link href="https://honokakousaka.github.io/RyanUtopia/" rel="alternate"></link><link href="https://honokakousaka.github.io/RyanUtopia/feeds/all.atom.xml" rel="self"></link><id>https://honokakousaka.github.io/RyanUtopia/</id><updated>2023-08-20T16:49:00+08:00</updated><subtitle>只属于我的一隅就是我的乌托邦。</subtitle><entry><title>研究生的未来考量</title><link href="https://honokakousaka.github.io/RyanUtopia/Postgraduate.html" rel="alternate"></link><published>2023-08-20T16:49:00+08:00</published><updated>2023-08-20T16:49:00+08:00</updated><author><name>Ryan Watson</name></author><id>tag:honokakousaka.github.io,2023-08-20:/RyanUtopia/Postgraduate.html</id><summary type="html">&lt;p&gt;是否要攻读博士研究生，又是否要出国留学，是一个我们必须共同面对的问题。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;硕士与博士的普世价值分析&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Ryan Utopia</title><link href="https://honokakousaka.github.io/RyanUtopia/" rel="alternate"></link><link href="https://honokakousaka.github.io/RyanUtopia/feeds/all.atom.xml" rel="self"></link><id>https://honokakousaka.github.io/RyanUtopia/</id><updated>2023-08-26T22:53:00+08:00</updated><subtitle>只属于我的一隅就是我的乌托邦。</subtitle><entry><title>关于遇到拟合问题时，拟合函数如何选择的问题</title><link href="https://honokakousaka.github.io/RyanUtopia/Fitting.html" rel="alternate"></link><published>2023-08-26T22:53:00+08:00</published><updated>2023-08-26T22:53:00+08:00</updated><author><name>Ryan Watson</name></author><id>tag:honokakousaka.github.io,2023-08-26:/RyanUtopia/Fitting.html</id><summary type="html">&lt;p&gt;如何对一些数据选择合适的拟合函数呢？&lt;/p&gt;</summary><content type="html">&lt;p&gt;无论是在竞赛中，还是在现实生活中，一组数据往往会&lt;strong&gt;隐含&lt;/strong&gt;一些特征或性质。正是这些特征或性质，使得我们得到的数据呈现这样的大小与分布规律。但是，我们作为分析它的人，我们是不清楚这些数据的特征或性质是什么的。拟合实际上就是一个探寻数据特征的方式。&lt;/p&gt;
+&lt;p&gt;但实际上，除非我们拟合的数据本身符合一些已知的规律（比如已知的化学性质、物理定律），不然我们必然是不清楚这个拟合函数如何选择的。那么，如何对一些数据选择合适的拟合函数呢？&lt;/p&gt;
+&lt;h3&gt;1. 量纲的影响&lt;/h3&gt;
+&lt;p&gt;假如在拟合的时候，应变量与自变量确实存在一个确定的，可以显性表示的转换公式，那么自变量与应变量应该在&lt;strong&gt;量纲&lt;/strong&gt;上是合理的。&lt;/p&gt;
+&lt;p&gt;我们来设想一个高中时的实验。比如，当我想用实验研究匀加速直线运动的物体的路程与时间的关系（$s=\frac{1}{2}at^2$），我应该用怎么样的函数拟合它呢？&lt;/p&gt;
+&lt;p&gt;在进行实验之后，我必然会得到一组数据，通过绘制散点图，我也一定会看到它的趋势。现在我们知道，这应该是一个二次曲线，但如果我不是提前知道路程与速度呈现的二次函数关系，我看到的就只是一个呈现弯曲趋势的离散的数据点，我应该用什么方式去拟合它呢？实际上，我完全可以选择三次函数、四次函数去拟合它，我相信我得到的$SSE$一定是比二次函数拟合得到的还要更小！&lt;/p&gt;
+&lt;p&gt;从数值上，可能三次函数或四次函数得到的$SSE$的确比二次函数得到的更小，并且也没有出现严重的过拟合，但它在量纲上说不通：路程的单位为$m$，加速度的单位为$m/s^2$，时间的单位为$s$，采用更高次函数的拟合会导致量纲出现错误，这不符合物理学基础的规则。&lt;/p&gt;
+&lt;p&gt;另外，根据奥卡姆剃刀原则，人们相信“如无必要，勿增实体”。很多时候我们都很难探究出世界的真理，我们只不过是去寻求一个可以更容易解释世界的方式。如果我们很难通过理论推导探究出一个确切的物理规律，而不得不采用实验的方式来确定他们的规律，那么我们更愿意去采用一个相对简单的解释方法去理解它。在这里，如果强行要用三次函数或更高次函数拟合，我可能需要引入其他物理量使得量纲平衡，这非常麻烦。而二次函数的$SSE$已经足以让人接受，且它的形式也最为简单。当然，这个理由在国赛中不那么具有说服力，所以见仁见智即可。&lt;/p&gt;
+&lt;h3&gt;2. 已有的规律&lt;/h3&gt;
+&lt;p&gt;在姜启源的教材中与清风的幻灯片中，我们看到了自己根本想不到的拟合函数。这难道需要我们自己探究吗？&lt;/p&gt;
+&lt;p&gt;这显然是不现实的。实际上，那些诡异的公式很可能和我们已知的某些简单形式的函数没有太大差别，用简单的形式去拟合可能也可以得到不错的效果。这说明，那些公式本来就不是我们凭空思考或者分析图像性质得来的，而是某种已经确定的规律。只不过，我们的确不了解这些领域，这些公式的存在对我们来说非常陌生，所以我们自己的确是不会写出这样的拟合函数的。说不定真正的公式是一个分段函数，而我们只是看数据点的分布还看不出来呢！&lt;/p&gt;
+&lt;p&gt;所以，在遇到一个拟合问题时，如果你认为它的背后存在某种确定的定律，那么我们可以通过&lt;strong&gt;查阅文献&lt;/strong&gt;的方式来确定拟合函数。最后我们需要的，无非只是拟合之后得到的参数。&lt;/p&gt;
+&lt;h3&gt;3. 自行决定，交叉验证&lt;/h3&gt;
+&lt;p&gt;在对国赛提供的数据进行拟合之前，你应该相信一件事：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;不存在“绝对正确”的拟合。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;也许这组数据背后的确存在一个可以用公式显式表达的关系，但我们不会那么轻易发现它的。我也不相信，国赛的出题人会要求我们对一个查不到参考文献&lt;strong&gt;且&lt;/strong&gt;专业壁垒过高的数据分析出一个最为精确的结果，然后凡是不符合那个公式的人就要减分。实际上，在实际的学术研究中，对两个变量的关系不甚了解才是更多见的情况，此时的拟合通常不是为了得到一个绝对正确的规律，而是为了找到一个方便理解与解释它的方式。所以，我仍然坚持我一开始的想法：&lt;strong&gt;我们可以自己多尝试几个拟合函数，选择其中效果最好的作为拟合结果。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当然，你可以采取交叉验证的方式，即采取其中一部分用于拟合，再将剩余的一小部分用于检验拟合的结果（有一点像机器学习中划分测试集与训练集）。如果根据已知数据的交叉验证，我们得到了还不错的结果，那其实也可以说明我们的拟合有一定的效果。&lt;/p&gt;
+&lt;h3&gt;4. AIC与BIC&lt;/h3&gt;
+&lt;p&gt;这是两个在衡量拟合函数效果时会用到的两个方法，可以学习一下。&lt;/p&gt;
+&lt;p&gt;更多人们对于拟合函数的探讨，可见&lt;a href="#https://www.zhihu.com/question/400932004"&gt;https://www.zhihu.com/question/400932004&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;2023.8.26&lt;/p&gt;
+&lt;p&gt;$\mathcal{Ryan\space Watson}$&lt;/p&gt;</content><category term="学术相关"></category></entry><entry><title>研究生的未来考量</title><link href="https://honokakousaka.github.io/RyanUtopia/Postgraduate.html" rel="alternate"></link><published>2023-08-20T16:49:00+08:00</published><updated>2023-08-20T16:49:00+08:00</updated><author><name>Ryan Watson</name></author><id>tag:honokakousaka.github.io,2023-08-20:/RyanUtopia/Postgraduate.html</id><summary type="html">&lt;p&gt;是否要攻读博士研究生，又是否要出国留学，是一个我们必须共同面对的问题。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;硕士与博士的普世价值分析&lt;/h2&gt;
 &lt;p&gt;在我们考量攻读硕士研究生甚至是博士研究生之前，我们需要明确的一件事情是，他们都是“&lt;strong&gt;研究生&lt;/strong&gt;”。&lt;/p&gt;
 &lt;p&gt;在目前的国内大形势之下，我们普遍认为不至少攻读一个硕士研究生，我们是找不到有前途的工作的。也就是说，我们认为攻读硕士研究生能够让我们在市场上更具竞争力。&lt;/p&gt;
 &lt;p&gt;不知道是什么原因，我们看待“研究生”这个词的时候似乎是忽略了它在语言学上的定义。“研究生”的本义是做研究的人，这注定了在我攻读硕士研究生期间，我会有大量的时间与学术打交道。但这就不禁要问大家了，如果我是一个就业导向型的人，那么我发表了在某一个领域的学术论文，对我未来的就业有什么帮助吗？某种程度上说，如果我未来真的想要进入业界，冲刺大厂，那可能几段大厂的实习会来得比那篇硕士论文来得更加有价值。因此，我也见过一种论调，认为“想要进入国内大厂，完全可以不攻读硕士研究生，只要多争取实习就可以了”。&lt;/p&gt;

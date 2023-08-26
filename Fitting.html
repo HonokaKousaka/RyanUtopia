@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>  关于遇到拟合问题时，拟合函数如何选择的问题 | Ryan Utopia
+</title>
+  <link rel="canonical" href="https://honokakousaka.github.io/RyanUtopia/Fitting.html">
+
+    <link rel="apple-touch-icon" href="https://honokakousaka.github.io/RyanUtopia/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" type="image/png" href="https://honokakousaka.github.io/RyanUtopia/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://honokakousaka.github.io/RyanUtopia/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/ico" href="https://honokakousaka.github.io/RyanUtopia/favicon.ico" sizes="16x16">
+    <link rel="manifest" href="https://honokakousaka.github.io/RyanUtopia/manifest.json">
+    <meta name="theme-color" content="#333333">
+
+  <link rel="stylesheet" href="https://honokakousaka.github.io/RyanUtopia/theme/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://honokakousaka.github.io/RyanUtopia/theme/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://honokakousaka.github.io/RyanUtopia/theme/css/pygments/default.min.css">
+  <link rel="stylesheet" href="https://honokakousaka.github.io/RyanUtopia/theme/css/theme.css">
+
+  <link rel="alternate" type="application/atom+xml" title="Full Atom Feed"
+        href="https://honokakousaka.github.io/RyanUtopia/feeds/all.atom.xml">
+  <link rel="alternate" type="application/atom+xml" title="Categories Atom Feed"
+        href="https://honokakousaka.github.io/RyanUtopia/feeds/xue-zhu-xiang-guan.atom.xml">  
+  <meta name="description" content="如何对一些数据选择合适的拟合函数呢？">
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+<div class="row">
+    <div class="col-sm-4">
+      <a href="https://honokakousaka.github.io/RyanUtopia/">
+        <img class="img-fluid rounded" src=https://honokakousaka.github.io/RyanUtopia/images/profile.png alt="Ryan Utopia">
+      </a>
+    </div>
+  <div class="col-sm-8">
+    <h1 class="title"><a href="https://honokakousaka.github.io/RyanUtopia/">Ryan Utopia</a></h1>
+      <p class="text-muted">只属于我的一隅就是我的乌托邦。</p>
+      <ul class="list-inline">
+          <li class="list-inline-item"><a href="https://github.com/HonokaKousaka/RyanUtopia" target="_blank">Source</a></li>
+          <li class="list-inline-item"><a href="https://github.com/HonokaKousaka/RyanUtopia/issues" target="_blank">Issues</a></li>
+          <li class="list-inline-item"><a href="https://github.com/HonokaKousaka/RyanUtopia/discussions" target="_blank">Discussions</a></li>
+              <li class="list-inline-item text-muted">|</li>
+            <li class="list-inline-item"><a href="https://honokakousaka.github.io/RyanUtopia/pages/about.html">About</a></li>
+            <li class="list-inline-item"><a href="https://honokakousaka.github.io/RyanUtopia/pages/copyright.html">Copyright</a></li>
+            <li class=" list-inline-item text-muted">|</li>
+          <li class="list-inline-item"><a class="fab fa-github" href="https://github.com/HonokaKousaka" target="_blank"></a></li>
+          <li class="list-inline-item"><a class="fas fa-rss" href="https://honokakousaka.github.io/RyanUtopia/feeds/all.atom.xml" target="_blank"></a></li>
+      </ul>
+  </div>
+</div>    </div>
+  </header>
+
+  <div class="main">
+    <div class="container">
+      <h1>  关于遇到拟合问题时，拟合函数如何选择的问题
+</h1>
+      <hr>
+  <article class="article">
+    <header>
+      <ul class="list-inline">
+        <li class="list-inline-item text-muted" title="2023-08-26T22:53:00+08:00">
+          <i class="fas fa-clock"></i>
+          2023-08-26 周六
+        </li>
+        <li class="list-inline-item">
+          <i class="fas fa-folder-open"></i>
+          <a href="https://honokakousaka.github.io/RyanUtopia/category/xue-zhu-xiang-guan.html">学术相关</a>
+        </li>
+          <li class="list-inline-item">
+            <i class="fas fa-user"></i>
+              <a href="https://honokakousaka.github.io/RyanUtopia/author/ryan-watson.html">Ryan Watson</a>          </li>
+      </ul>
+    </header>
+    <div class="content">
+      <p>无论是在竞赛中，还是在现实生活中，一组数据往往会<strong>隐含</strong>一些特征或性质。正是这些特征或性质，使得我们得到的数据呈现这样的大小与分布规律。但是，我们作为分析它的人，我们是不清楚这些数据的特征或性质是什么的。拟合实际上就是一个探寻数据特征的方式。</p>
+<p>但实际上，除非我们拟合的数据本身符合一些已知的规律（比如已知的化学性质、物理定律），不然我们必然是不清楚这个拟合函数如何选择的。那么，如何对一些数据选择合适的拟合函数呢？</p>
+<h3>1. 量纲的影响</h3>
+<p>假如在拟合的时候，应变量与自变量确实存在一个确定的，可以显性表示的转换公式，那么自变量与应变量应该在<strong>量纲</strong>上是合理的。</p>
+<p>我们来设想一个高中时的实验。比如，当我想用实验研究匀加速直线运动的物体的路程与时间的关系（$s=\frac{1}{2}at^2$），我应该用怎么样的函数拟合它呢？</p>
+<p>在进行实验之后，我必然会得到一组数据，通过绘制散点图，我也一定会看到它的趋势。现在我们知道，这应该是一个二次曲线，但如果我不是提前知道路程与速度呈现的二次函数关系，我看到的就只是一个呈现弯曲趋势的离散的数据点，我应该用什么方式去拟合它呢？实际上，我完全可以选择三次函数、四次函数去拟合它，我相信我得到的$SSE$一定是比二次函数拟合得到的还要更小！</p>
+<p>从数值上，可能三次函数或四次函数得到的$SSE$的确比二次函数得到的更小，并且也没有出现严重的过拟合，但它在量纲上说不通：路程的单位为$m$，加速度的单位为$m/s^2$，时间的单位为$s$，采用更高次函数的拟合会导致量纲出现错误，这不符合物理学基础的规则。</p>
+<p>另外，根据奥卡姆剃刀原则，人们相信“如无必要，勿增实体”。很多时候我们都很难探究出世界的真理，我们只不过是去寻求一个可以更容易解释世界的方式。如果我们很难通过理论推导探究出一个确切的物理规律，而不得不采用实验的方式来确定他们的规律，那么我们更愿意去采用一个相对简单的解释方法去理解它。在这里，如果强行要用三次函数或更高次函数拟合，我可能需要引入其他物理量使得量纲平衡，这非常麻烦。而二次函数的$SSE$已经足以让人接受，且它的形式也最为简单。当然，这个理由在国赛中不那么具有说服力，所以见仁见智即可。</p>
+<h3>2. 已有的规律</h3>
+<p>在姜启源的教材中与清风的幻灯片中，我们看到了自己根本想不到的拟合函数。这难道需要我们自己探究吗？</p>
+<p>这显然是不现实的。实际上，那些诡异的公式很可能和我们已知的某些简单形式的函数没有太大差别，用简单的形式去拟合可能也可以得到不错的效果。这说明，那些公式本来就不是我们凭空思考或者分析图像性质得来的，而是某种已经确定的规律。只不过，我们的确不了解这些领域，这些公式的存在对我们来说非常陌生，所以我们自己的确是不会写出这样的拟合函数的。说不定真正的公式是一个分段函数，而我们只是看数据点的分布还看不出来呢！</p>
+<p>所以，在遇到一个拟合问题时，如果你认为它的背后存在某种确定的定律，那么我们可以通过<strong>查阅文献</strong>的方式来确定拟合函数。最后我们需要的，无非只是拟合之后得到的参数。</p>
+<h3>3. 自行决定，交叉验证</h3>
+<p>在对国赛提供的数据进行拟合之前，你应该相信一件事：</p>
+<p><strong>不存在“绝对正确”的拟合。</strong></p>
+<p>也许这组数据背后的确存在一个可以用公式显式表达的关系，但我们不会那么轻易发现它的。我也不相信，国赛的出题人会要求我们对一个查不到参考文献<strong>且</strong>专业壁垒过高的数据分析出一个最为精确的结果，然后凡是不符合那个公式的人就要减分。实际上，在实际的学术研究中，对两个变量的关系不甚了解才是更多见的情况，此时的拟合通常不是为了得到一个绝对正确的规律，而是为了找到一个方便理解与解释它的方式。所以，我仍然坚持我一开始的想法：<strong>我们可以自己多尝试几个拟合函数，选择其中效果最好的作为拟合结果。</strong></p>
+<p>当然，你可以采取交叉验证的方式，即采取其中一部分用于拟合，再将剩余的一小部分用于检验拟合的结果（有一点像机器学习中划分测试集与训练集）。如果根据已知数据的交叉验证，我们得到了还不错的结果，那其实也可以说明我们的拟合有一定的效果。</p>
+<h3>4. AIC与BIC</h3>
+<p>这是两个在衡量拟合函数效果时会用到的两个方法，可以学习一下。</p>
+<p>更多人们对于拟合函数的探讨，可见<a href="#https://www.zhihu.com/question/400932004">https://www.zhihu.com/question/400932004</a>.</p>
+<p>2023.8.26</p>
+<p>$\mathcal{Ryan\space Watson}$</p>
+    </div>
+  </article>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+<div class="row">
+  <ul class="col-sm-6 list-inline">
+      <li class="list-inline-item"><a href="https://honokakousaka.github.io/RyanUtopia/authors.html">Authors</a></li>
+    <li class="list-inline-item"><a href="https://honokakousaka.github.io/RyanUtopia/archives.html">Archives</a></li>
+    <li class="list-inline-item"><a href="https://honokakousaka.github.io/RyanUtopia/categories.html">Categories</a></li>
+  </ul>
+  <p class="col-sm-6 text-sm-right text-muted">
+    Generated by <a href="https://github.com/getpelican/pelican" target="_blank">Pelican</a>
+    / <a href="https://github.com/nairobilug/pelican-alchemy" target="_blank">&#x2728;</a>
+  </p>
+</div>    </div>
+  </footer>
+
+</body>
+
+</html>
