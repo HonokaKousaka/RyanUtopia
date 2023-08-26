@@ -3,10 +3,10 @@
 &lt;p&gt;但实际上，除非我们拟合的数据本身符合一些已知的规律（比如已知的化学性质、物理定律），不然我们必然是不清楚这个拟合函数如何选择的。那么，如何对一些数据选择合适的拟合函数呢？&lt;/p&gt;
 &lt;h3&gt;1. 量纲的影响&lt;/h3&gt;
 &lt;p&gt;假如在拟合的时候，应变量与自变量确实存在一个确定的，可以显性表示的转换公式，那么自变量与应变量应该在&lt;strong&gt;量纲&lt;/strong&gt;上是合理的。&lt;/p&gt;
-&lt;p&gt;我们来设想一个高中时的实验。比如，当我想用实验研究匀加速直线运动的物体的路程与时间的关系（$s=\frac{1}{2}at^2$），我应该用怎么样的函数拟合它呢？&lt;/p&gt;
-&lt;p&gt;在进行实验之后，我必然会得到一组数据，通过绘制散点图，我也一定会看到它的趋势。现在我们知道，这应该是一个二次曲线，但如果我不是提前知道路程与速度呈现的二次函数关系，我看到的就只是一个呈现弯曲趋势的离散的数据点，我应该用什么方式去拟合它呢？实际上，我完全可以选择三次函数、四次函数去拟合它，我相信我得到的$SSE$一定是比二次函数拟合得到的还要更小！&lt;/p&gt;
-&lt;p&gt;从数值上，可能三次函数或四次函数得到的$SSE$的确比二次函数得到的更小，并且也没有出现严重的过拟合，但它在量纲上说不通：路程的单位为$m$，加速度的单位为$m/s^2$，时间的单位为$s$，采用更高次函数的拟合会导致量纲出现错误，这不符合物理学基础的规则。&lt;/p&gt;
-&lt;p&gt;另外，根据奥卡姆剃刀原则，人们相信“如无必要，勿增实体”。很多时候我们都很难探究出世界的真理，我们只不过是去寻求一个可以更容易解释世界的方式。如果我们很难通过理论推导探究出一个确切的物理规律，而不得不采用实验的方式来确定他们的规律，那么我们更愿意去采用一个相对简单的解释方法去理解它。在这里，如果强行要用三次函数或更高次函数拟合，我可能需要引入其他物理量使得量纲平衡，这非常麻烦。而二次函数的$SSE$已经足以让人接受，且它的形式也最为简单。当然，这个理由在国赛中不那么具有说服力，所以见仁见智即可。&lt;/p&gt;
+&lt;p&gt;我们来设想一个高中时的实验。比如，当我想用实验研究匀加速直线运动的物体的路程与时间的关系（&lt;span class="math"&gt;\(s=\frac{1}{2}at^2\)&lt;/span&gt;），我应该用怎么样的函数拟合它呢？&lt;/p&gt;
+&lt;p&gt;在进行实验之后，我必然会得到一组数据，通过绘制散点图，我也一定会看到它的趋势。现在我们知道，这应该是一个二次曲线，但如果我不是提前知道路程与速度呈现的二次函数关系，我看到的就只是一个呈现弯曲趋势的离散的数据点，我应该用什么方式去拟合它呢？实际上，我完全可以选择三次函数、四次函数去拟合它，我相信我得到的&lt;span class="math"&gt;\(SSE\)&lt;/span&gt;一定是比二次函数拟合得到的还要更小！&lt;/p&gt;
+&lt;p&gt;从数值上，可能三次函数或四次函数得到的&lt;span class="math"&gt;\(SSE\)&lt;/span&gt;的确比二次函数得到的更小，并且也没有出现严重的过拟合，但它在量纲上说不通：路程的单位为&lt;span class="math"&gt;\(m\)&lt;/span&gt;，加速度的单位为&lt;span class="math"&gt;\(m/s^2\)&lt;/span&gt;，时间的单位为&lt;span class="math"&gt;\(s\)&lt;/span&gt;，采用更高次函数的拟合会导致量纲出现错误，这不符合物理学基础的规则。&lt;/p&gt;
+&lt;p&gt;另外，根据奥卡姆剃刀原则，人们相信“如无必要，勿增实体”。很多时候我们都很难探究出世界的真理，我们只不过是去寻求一个可以更容易解释世界的方式。如果我们很难通过理论推导探究出一个确切的物理规律，而不得不采用实验的方式来确定他们的规律，那么我们更愿意去采用一个相对简单的解释方法去理解它。在这里，如果强行要用三次函数或更高次函数拟合，我可能需要引入其他物理量使得量纲平衡，这非常麻烦。而二次函数的&lt;span class="math"&gt;\(SSE\)&lt;/span&gt;已经足以让人接受，且它的形式也最为简单。当然，这个理由在国赛中不那么具有说服力，所以见仁见智即可。&lt;/p&gt;
 &lt;h3&gt;2. 已有的规律&lt;/h3&gt;
 &lt;p&gt;在姜启源的教材中与清风的幻灯片中，我们看到了自己根本想不到的拟合函数。这难道需要我们自己探究吗？&lt;/p&gt;
 &lt;p&gt;这显然是不现实的。实际上，那些诡异的公式很可能和我们已知的某些简单形式的函数没有太大差别，用简单的形式去拟合可能也可以得到不错的效果。这说明，那些公式本来就不是我们凭空思考或者分析图像性质得来的，而是某种已经确定的规律。只不过，我们的确不了解这些领域，这些公式的存在对我们来说非常陌生，所以我们自己的确是不会写出这样的拟合函数的。说不定真正的公式是一个分段函数，而我们只是看数据点的分布还看不出来呢！&lt;/p&gt;
@@ -20,7 +20,69 @@
 &lt;p&gt;这是两个在衡量拟合函数效果时会用到的两个方法，可以学习一下。&lt;/p&gt;
 &lt;p&gt;更多人们对于拟合函数的探讨，可见&lt;a href="#https://www.zhihu.com/question/400932004"&gt;https://www.zhihu.com/question/400932004&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;2023.8.26&lt;/p&gt;
-&lt;p&gt;$\mathcal{Ryan\space Watson}$&lt;/p&gt;</content><category term="学术相关"></category></entry><entry><title>研究生的未来考量</title><link href="https://honokakousaka.github.io/RyanUtopia/Postgraduate.html" rel="alternate"></link><published>2023-08-20T16:49:00+08:00</published><updated>2023-08-20T16:49:00+08:00</updated><author><name>Ryan Watson</name></author><id>tag:honokakousaka.github.io,2023-08-20:/RyanUtopia/Postgraduate.html</id><summary type="html">&lt;p&gt;是否要攻读博士研究生，又是否要出国留学，是一个我们必须共同面对的问题。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;硕士与博士的普世价值分析&lt;/h2&gt;
+&lt;p&gt;&lt;span class="math"&gt;\(\mathcal{Ryan\space Watson}\)&lt;/span&gt;&lt;/p&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width &lt; 768) ? "left" : align;
+        indent = (screen.width &lt; 768) ? "0em" : indent;
+        linebreak = (screen.width &lt; 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;</content><category term="学术相关"></category></entry><entry><title>研究生的未来考量</title><link href="https://honokakousaka.github.io/RyanUtopia/Postgraduate.html" rel="alternate"></link><published>2023-08-20T16:49:00+08:00</published><updated>2023-08-20T16:49:00+08:00</updated><author><name>Ryan Watson</name></author><id>tag:honokakousaka.github.io,2023-08-20:/RyanUtopia/Postgraduate.html</id><summary type="html">&lt;p&gt;是否要攻读博士研究生，又是否要出国留学，是一个我们必须共同面对的问题。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;硕士与博士的普世价值分析&lt;/h2&gt;
 &lt;p&gt;在我们考量攻读硕士研究生甚至是博士研究生之前，我们需要明确的一件事情是，他们都是“&lt;strong&gt;研究生&lt;/strong&gt;”。&lt;/p&gt;
 &lt;p&gt;在目前的国内大形势之下，我们普遍认为不至少攻读一个硕士研究生，我们是找不到有前途的工作的。也就是说，我们认为攻读硕士研究生能够让我们在市场上更具竞争力。&lt;/p&gt;
 &lt;p&gt;不知道是什么原因，我们看待“研究生”这个词的时候似乎是忽略了它在语言学上的定义。“研究生”的本义是做研究的人，这注定了在我攻读硕士研究生期间，我会有大量的时间与学术打交道。但这就不禁要问大家了，如果我是一个就业导向型的人，那么我发表了在某一个领域的学术论文，对我未来的就业有什么帮助吗？某种程度上说，如果我未来真的想要进入业界，冲刺大厂，那可能几段大厂的实习会来得比那篇硕士论文来得更加有价值。因此，我也见过一种论调，认为“想要进入国内大厂，完全可以不攻读硕士研究生，只要多争取实习就可以了”。&lt;/p&gt;
